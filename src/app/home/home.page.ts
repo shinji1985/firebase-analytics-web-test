@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,26 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  enabled = this.analyticsService.analyticsEnabled;
 
-  constructor() {}
+  constructor(private analyticsService: AnalyticsService) { }
+
+  setUser() {
+    this.analyticsService.setUser();
+  }
+
+  setProperty() {
+    this.analyticsService.setProperty();
+  }
+
+  logEvent() {
+    this.analyticsService.logEvent();
+  }
+
+
+  toggleDataCollection() {
+    this.analyticsService.toggleAnalytics();
+    this.enabled = this.analyticsService.analyticsEnabled;
+  }
 
 }
